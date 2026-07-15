@@ -5,7 +5,7 @@
     xmlns:controls="clr-namespace:steam.Controls"
     Title="Loadouts"
     Width="420"
-    Height="640"
+    Height="780"
     Style="{StaticResource TransparentWindow}">
 
     <Grid Margin="8">
@@ -101,10 +101,68 @@
                 <TabItem Header="Slot Manager">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <StackPanel Margin="4">
-                            <Label Content="Loadout Slots (4x5 Grid)" Foreground="{StaticResource AccentColor}" FontFamily="{StaticResource TitleFont}" Margin="0,4,0,8"/>
+                            <Label Content="Macro Controls" Foreground="{StaticResource AccentColor}" FontFamily="{StaticResource TitleFont}" Margin="0,4,0,6"/>
+                            
+                            <Grid Margin="0,2">
+                                <Label Content="Swap Start Bind" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource Kantumruy}" FontSize="13"/>
+                                <controls:Button x:Name="SlotMgrSwapBindBtn" Text="No keybind" HorizontalAlignment="Right" Click="Keybind_Click" MaxWidth="140"/>
+                            </Grid>
+
+                            <Grid Margin="0,2">
+                                <Label Content="Inventory Bind" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource Kantumruy}" FontSize="13"/>
+                                <controls:Button x:Name="SlotMgrInventoryBindBtn" Text="No keybind" HorizontalAlignment="Right" Click="Keybind_Click" MaxWidth="140"/>
+                            </Grid>
+
+                            <Grid Margin="0,2">
+                                <Label Content="Port Mode" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource Kantumruy}"/>
+                                <ComboBox x:Name="SlotMgrPortCombo" Width="130" HorizontalAlignment="Right" SelectionChanged="PortCombo_Changed"/>
+                            </Grid>
+
+                            <Grid Margin="0,2">
+                                <Label Content="Swap Duration (ms)" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource Kantumruy}"/>
+                                <TextBox x:Name="SlotMgrDurationBox" Width="80" HorizontalAlignment="Right" LostFocus="Numeric_LostFocus"/>
+                            </Grid>
+
+                            <Grid Margin="0,2">
+                                <Label Content="Delay Between Loadouts (ms)" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource Kantumruy}"/>
+                                <TextBox x:Name="SlotMgrDelayBox" Width="80" HorizontalAlignment="Right" LostFocus="Numeric_LostFocus"/>
+                            </Grid>
+
+                            <Grid Margin="0,2">
+                                <Label Content="Pause Delay (ms)" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource Kantumruy}"/>
+                                <TextBox x:Name="SlotMgrPauseDelayBox" Width="80" HorizontalAlignment="Right" LostFocus="Numeric_LostFocus"/>
+                            </Grid>
+
+                            <Grid Margin="0,2">
+                                <Label Content="Final Loadout Slot" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource Kantumruy}"/>
+                                <TextBox x:Name="SlotMgrFinalLoadoutBox" Width="80" HorizontalAlignment="Right" LostFocus="Ending_LostFocus"/>
+                            </Grid>
+
+                            <Label Content="Options" Foreground="{StaticResource AccentColor}" FontFamily="{StaticResource TitleFont}" Margin="0,6,0,4"/>
+
+                            <WrapPanel Margin="0,2,0,8">
+                                <controls:Checkbox x:Name="SlotMgrDlCB" Margin="0,0,8,4" Click="OptionCB_Click"/>
+                                <Label Content="Enable 3074 DL" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource Kantumruy}" VerticalAlignment="Center" Margin="-6,0,12,4"/>
+                                
+                                <controls:Checkbox x:Name="SlotMgrCloseInvCB" Margin="0,0,8,4" Click="OptionCB_Click"/>
+                                <Label Content="Close Inventory" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource Kantumruy}" VerticalAlignment="Center" Margin="-6,0,12,4"/>
+                                
+                                <controls:Checkbox x:Name="SlotMgrAutoBufferCB" Margin="0,0,8,4" Click="OptionCB_Click"/>
+                                <Label Content="Auto-Disable Buffering" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource Kantumruy}" VerticalAlignment="Center" Margin="-6,0,12,4"/>
+                                
+                                <controls:Checkbox x:Name="SlotMgrEnhancedCB" Margin="0,0,8,4" Click="OptionCB_Click"/>
+                                <Label Content="Enhanced Delay" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource Kantumruy}" VerticalAlignment="Center" Margin="-6,0,8,4"/>
+                                
+                                <controls:Checkbox x:Name="SlotMgrTimerCB" Margin="0,0,8,4" Click="OptionCB_Click"/>
+                                <Label Content="Show Timer" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource Kantumruy}" VerticalAlignment="Center" Margin="-6,0,0,4"/>
+                            </WrapPanel>
+
+                            <Separator Background="{StaticResource InactiveColor}" Opacity="0.3" Margin="0,4"/>
+
+                            <Label Content="20 Loadout Slots" Foreground="{StaticResource AccentColor}" FontFamily="{StaticResource TitleFont}" Margin="0,6,0,4"/>
                             <UniformGrid x:Name="SlotManagerGrid" Columns="4" Rows="5" Margin="0,0,0,12"/>
                             
-                            <controls:Button x:Name="BatchCaptureBtn" Text="Capture All Slots" Margin="0,6,0,6" Click="BatchCapture_Click"/>
+                            <controls:Button x:Name="BatchCaptureBtn" Text="Capture All Slots" Margin="0,4,0,4" Click="BatchCapture_Click"/>
                             <Label x:Name="BatchCaptureStatus" Content="" Foreground="{StaticResource TitleColor}"
                                    FontSize="11" FontFamily="{StaticResource Kantumruy}" Margin="0,0,0,6"/>
                         </StackPanel>
