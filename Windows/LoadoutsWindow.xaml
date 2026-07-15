@@ -101,10 +101,10 @@
                 <TabItem Header="Slot Manager">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <StackPanel Margin="4">
-                            <Label Content="Loadout Slots Grid" Foreground="{StaticResource AccentColor}" FontFamily="{StaticResource TitleFont}" Margin="0,4,0,8"/>
-                            <UniformGrid x:Name="SlotManagerGrid" Columns="2" Rows="10" Margin="0,0,0,8"/>
+                            <Label Content="Loadout Slots (4x5 Grid)" Foreground="{StaticResource AccentColor}" FontFamily="{StaticResource TitleFont}" Margin="0,4,0,8"/>
+                            <UniformGrid x:Name="SlotManagerGrid" Columns="4" Rows="5" Margin="0,0,0,12"/>
                             
-                            <controls:Button x:Name="BatchCaptureBtn" Text="Capture All Slots" Margin="0,6,0,2" Click="BatchCapture_Click"/>
+                            <controls:Button x:Name="BatchCaptureBtn" Text="Capture All Slots" Margin="0,6,0,6" Click="BatchCapture_Click"/>
                             <Label x:Name="BatchCaptureStatus" Content="" Foreground="{StaticResource TitleColor}"
                                    FontSize="11" FontFamily="{StaticResource Kantumruy}" Margin="0,0,0,6"/>
                         </StackPanel>
