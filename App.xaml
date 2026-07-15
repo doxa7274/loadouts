@@ -1,0 +1,64 @@
+﻿<Application x:Class="steam.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:steam" 
+             xmlns:controls="clr-namespace:steam.Controls"
+             xmlns:media="clr-namespace:steam.Controls"
+             xmlns:math="http://hexinnovation.com/math"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:sf="clr-namespace:WpfSnowfall"
+             StartupUri="Windows/StartupProgressBar.xaml">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Windows/Assets/ControlTemplates.xaml"/>
+                <ResourceDictionary Source="Windows/Assets/Icons.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <math:MathConverter x:Key="Math" />
+
+            <FontFamily x:Key="Kantumruy">pack://application:,,,/Windows/Assets/KantumruyPro-Regular.ttf</FontFamily>
+            <FontFamily x:Key="TitleFont">Calibri</FontFamily>
+            <FontFamily x:Key="SmallTitleFont">Bahnschrift Light</FontFamily>
+            <FontFamily x:Key="BigTextFont">Microsoft JhengHei UI Light</FontFamily>
+
+            <!--Color palette-->
+            <Color x:Key="Accent">#d5d4d8</Color>
+            <SolidColorBrush x:Key="TitleColor" Color="#bab8be"/>
+            <SolidColorBrush x:Key="AccentColor" Color="#d5d4d8"/>
+            <SolidColorBrush x:Key="FancyColor" Color="#EFBE58"/>
+            <SolidColorBrush x:Key="InactiveColor" Color="#BA75717d"/>
+            <SolidColorBrush x:Key="BackColor" Color="#af201c28"/>
+            <SolidColorBrush x:Key="LightBackColor" Color="#22000000"/>
+            <SolidColorBrush x:Key="DividorColor" Color="#66000000"/>
+
+
+            <SolidColorBrush x:Key="Upload" Color="#DEBACE"/>
+            <SolidColorBrush x:Key="Download" Color="#d1f28e"/>
+
+            <Geometry x:Key="AppIcon">
+                M-60.4 169.8c29.8-29.8 54.1-54.4 54.1-54.8 0-.6-58.5-59.3-59.2-59.3-.3 0-6.6 6.2-14.1 13.7-11.9 11.9-13.6 13.8-13.2 14.5.3.5 7.3 7.7 15.6 15.9 8.3 8.3 15.1 15.3 15.1 15.5 0 .3-18.1 18.6-40.3 40.7-22.1 22.1-40.3 40.4-40.3 40.6 0 .6 27 27.4 27.5 27.3.3 0 24.9-24.4 54.7-54.2zM-151.1 160.7c7.6-7.6 13.8-13.9 13.8-14 0-.1-7-7.2-15.5-15.8-8.5-8.6-15.5-15.8-15.5-16.2 0-.4 18.2-18.9 40.4-41l40.4-40.4-13.9-13.8-13.8-13.9-54.5 54.4c-30 29.9-54.5 54.7-54.5 55 0 .4 58.6 59.5 59.1 59.5 0 0 6.3-6.2 14-13.9z
+            </Geometry>
+
+            <Style x:Key="TransparentWindow" TargetType="Window">
+                <EventSetter Event="Loaded" Handler="TransparentWindowLoaded"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="AllowsTransparency" Value="True"/>
+                <Setter Property="ResizeMode" Value="NoResize"/>
+                <Setter Property="WindowStyle" Value="None"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Window">
+                            <Grid x:Name="mainddd" MouseDown="BorderMouseDown">
+                                <Border x:Name="backg" BorderThickness="1" BorderBrush="{StaticResource DividorColor}" Background="{StaticResource BackColor}" CornerRadius="12"/>
+                                <ContentPresenter/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

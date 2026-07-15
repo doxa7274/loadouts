@@ -1,0 +1,109 @@
+<Window
+    x:Class="steam.LoadoutsWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:steam.Controls"
+    Title="Loadouts"
+    Width="420"
+    Height="640"
+    Style="{StaticResource TransparentWindow}">
+
+    <Grid Margin="8">
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,4,4,0">
+            <controls:WindowControlButton PathData="{StaticResource CloseIcon}" GlowColor="#d93732" Click="Close_Click"
+                                          Width="32" Height="32" Scale="0.55" MaxScale="0.6"/>
+        </StackPanel>
+
+        <Label Content="Loadouts" Foreground="{StaticResource AccentColor}" FontSize="22"
+               FontFamily="{StaticResource BigTextFont}" Margin="8,2,0,0" IsHitTestVisible="False"/>
+
+        <Border CornerRadius="0,0,10,10" Background="{StaticResource LightBackColor}" Margin="8,40,8,8"
+                BorderThickness="1" BorderBrush="{StaticResource DividorColor}">
+            <TabControl x:Name="MainTabs" Margin="6" Background="Transparent" BorderThickness="0">
+                <TabItem Header="Profiles">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <StackPanel Margin="4">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,4,0,8">
+                                <controls:Button x:Name="Prof1" Text="1" Width="36" Margin="2" Click="ProfileTab_Click"/>
+                                <controls:Button x:Name="Prof2" Text="2" Width="36" Margin="2" Click="ProfileTab_Click"/>
+                                <controls:Button x:Name="Prof3" Text="3" Width="36" Margin="2" Click="ProfileTab_Click"/>
+                                <controls:Button x:Name="Prof4" Text="4" Width="36" Margin="2" Click="ProfileTab_Click"/>
+                                <controls:Button x:Name="Prof5" Text="5" Width="36" Margin="2" Click="ProfileTab_Click"/>
+                            </StackPanel>
+
+                            <Label x:Name="CaptureStatus" Content="" Foreground="{StaticResource TitleColor}"
+                                   FontSize="11" FontFamily="{StaticResource Kantumruy}" Margin="0,0,0,6"/>
+
+                            <Grid Margin="0,2">
+                                <Label Content="Enabled" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource Kantumruy}"/>
+                                <controls:Checkbox x:Name="EnabledCB" HorizontalAlignment="Right" Click="EnabledCB_Click"/>
+                            </Grid>
+
+                            <Grid Margin="0,2">
+                                <Label Content="Swap bind" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource Kantumruy}"/>
+                                <controls:Button x:Name="SwapBindBtn" Text="No keybind" HorizontalAlignment="Right" Click="Keybind_Click"/>
+                            </Grid>
+                            <Grid Margin="0,2">
+                                <Label Content="Inventory bind" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource Kantumruy}"/>
+                                <controls:Button x:Name="InventoryBindBtn" Text="No keybind" HorizontalAlignment="Right" Click="Keybind_Click"/>
+                            </Grid>
+                            <Grid Margin="0,2">
+                                <Label Content="Open loadouts bind" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource Kantumruy}"/>
+                                <controls:Button x:Name="OpenLoadoutsBindBtn" Text="No keybind" HorizontalAlignment="Right" Click="Keybind_Click"/>
+                            </Grid>
+
+                            <Grid Margin="0,2">
+                                <Label Content="Port" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource Kantumruy}"/>
+                                <ComboBox x:Name="PortCombo" Width="130" HorizontalAlignment="Right"
+                                          SelectionChanged="PortCombo_Changed"/>
+                            </Grid>
+
+                            <Grid Margin="0,2">
+                                <Label Content="Swap duration (ms)" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource Kantumruy}"/>
+                                <TextBox x:Name="DurationBox" Width="80" HorizontalAlignment="Right" LostFocus="Numeric_LostFocus"/>
+                            </Grid>
+                            <Grid Margin="0,2">
+                                <Label Content="Delay between loadouts (ms)" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource Kantumruy}"/>
+                                <TextBox x:Name="DelayBox" Width="80" HorizontalAlignment="Right" LostFocus="Numeric_LostFocus"/>
+                            </Grid>
+                            <Grid Margin="0,2">
+                                <Label Content="Untick delay (ms)" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource Kantumruy}"/>
+                                <TextBox x:Name="UntickBox" Width="80" HorizontalAlignment="Right" LostFocus="Numeric_LostFocus"/>
+                            </Grid>
+                            <Grid Margin="0,2">
+                                <Label Content="Ending loadout" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource Kantumruy}"/>
+                                <TextBox x:Name="EndingBox" Width="80" HorizontalAlignment="Right" LostFocus="Ending_LostFocus"/>
+                            </Grid>
+
+                            <WrapPanel Margin="0,6,0,2">
+                                <controls:Checkbox x:Name="DlCB" Margin="0,0,12,4" Click="OptionCB_Click"/>
+                                <Label Content="3074 DL" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource Kantumruy}" VerticalAlignment="Center" Margin="-8,0,8,4"/>
+                                <controls:Checkbox x:Name="CloseInvCB" Margin="0,0,12,4" Click="OptionCB_Click"/>
+                                <Label Content="Close inventory" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource Kantumruy}" VerticalAlignment="Center" Margin="-8,0,8,4"/>
+                                <controls:Checkbox x:Name="AutoBufCB" Margin="0,0,12,4" Click="OptionCB_Click"/>
+                                <Label Content="Auto-disable buffering" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource Kantumruy}" VerticalAlignment="Center" Margin="-8,0,8,4"/>
+                                <controls:Checkbox x:Name="EnhancedCB" Margin="0,0,12,4" Click="OptionCB_Click"/>
+                                <Label Content="Enhanced delay" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource Kantumruy}" VerticalAlignment="Center" Margin="-8,0,8,4"/>
+                                <controls:Checkbox x:Name="TimerCB" Margin="0,0,12,4" Click="OptionCB_Click"/>
+                                <Label Content="Show swap timer" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource Kantumruy}" VerticalAlignment="Center" Margin="-8,0,8,4"/>
+                            </WrapPanel>
+
+                            <Label Content="Selected loadouts" Foreground="{StaticResource AccentColor}" FontFamily="{StaticResource TitleFont}" Margin="0,6,0,2"/>
+                            <UniformGrid x:Name="LoadoutGrid" Columns="4" Rows="5" Margin="0,0,0,8"/>
+
+                            <Label Content="Slot coordinates (per profile)" Foreground="{StaticResource AccentColor}" FontFamily="{StaticResource TitleFont}" Margin="0,4,0,2"/>
+                            <controls:Button x:Name="StartEditingBtn" Text="Start Editing" Margin="0,0,0,6" Click="StartEditing_Click"/>
+                            <StackPanel x:Name="SlotPanel"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem>
+
+                <TabItem Header="QuickSwap">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <StackPanel x:Name="QuickSwapPanel" Margin="4"/>
+                    </ScrollViewer>
+                </TabItem>
+            </TabControl>
+        </Border>
+    </Grid>
+</Window>
