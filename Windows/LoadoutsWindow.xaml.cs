@@ -27,6 +27,7 @@ namespace steam
         readonly Dictionary<int, Checkbox> _slotActive = new();
         readonly Dictionary<int, Label> _slotCoords = new();
         readonly Dictionary<int, Button> _quickSwapBtns = new();
+        readonly Dictionary<int, Label> _slotManagerLabels = new();
         List<Keycode> _activeBind;
 
         public static void RefreshSlotsIfOpen()
@@ -57,6 +58,7 @@ namespace steam
             PortCombo.ItemsSource = new[] { "3074 UL", "27k UL", "Both", "No Port" };
             BuildLoadoutGrid();
             BuildSlotRows();
+            BuildSlotManagerGrid();
             BuildQuickSwap();
             _captureHandler = s => Dispatcher.BeginInvoke(() => CaptureStatus.Content = s);
             LoadoutCoordinateCapture.StatusChanged += _captureHandler;
@@ -127,6 +129,30 @@ namespace steam
             }
         }
 
+        void BuildSlotManagerGrid()
+        {
+            for (int i = 1; i <= 20; i++)
+            {
+                var grid = new Grid { Margin = new Thickness(2) };
+                grid.Background = new SolidColorBrush(Color.FromArgb(0x20, 0xFF, 0xFF, 0xFF));
+                grid.CornerRadius = new CornerRadius(4);
+
+                var label = new Label
+                {
+                    Content = $"Slot {i}\n--",
+                    Foreground = (Brush)FindResource("TitleColor"),
+                    FontFamily = (System.Windows.Media.FontFamily)FindResource("Kantumruy"),
+                    FontSize = 11,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    TextAlignment = TextAlignment.Center
+                };
+                grid.Children.Add(label);
+                SlotManagerGrid.Children.Add(grid);
+                _slotManagerLabels[i] = label;
+            }
+        }
+
         void BuildQuickSwap()
         {
             for (int i = 1; i <= 20; i++)
@@ -192,6 +218,9 @@ namespace steam
                 _slotActive[i].SetState(Profile.Slots[i - 1].Active);
                 var s = Profile.Slots[i - 1];
                 _slotCoords[i].Content = s.X == 0 && s.Y == 0 ? "not set" : $"{s.X}, {s.Y}";
+                
+                // Update Slot Manager Grid
+                _slotManagerLabels[i].Content = s.X == 0 && s.Y == 0 ? $"Slot {i}\nNot Set" : $"Slot {i}\n{s.X}, {s.Y}";
             }
         }
 
@@ -282,6 +311,12 @@ namespace steam
         {
             LoadoutCoordinateCapture.StartBatch(_profileIndex);
             CaptureStatus.Content = "Press Shift+0, then click loadout slots 1 through 20";
+        }
+
+        void BatchCapture_Click(object sender, RoutedEventArgs e)
+        {
+            LoadoutCoordinateCapture.StartBatch(_profileIndex);
+            BatchCaptureStatus.Content = "Press Shift+0, then click loadout slots 1 through 20";
         }
 
         void Keybind_Click(object sender, RoutedEventArgs e)
