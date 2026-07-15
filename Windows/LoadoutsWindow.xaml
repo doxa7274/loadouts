@@ -98,6 +98,19 @@
                     </ScrollViewer>
                 </TabItem>
 
+                <TabItem Header="Slot Manager">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <StackPanel Margin="4">
+                            <Label Content="Loadout Slots Grid" Foreground="{StaticResource AccentColor}" FontFamily="{StaticResource TitleFont}" Margin="0,4,0,8"/>
+                            <UniformGrid x:Name="SlotManagerGrid" Columns="2" Rows="10" Margin="0,0,0,8"/>
+                            
+                            <controls:Button x:Name="BatchCaptureBtn" Text="Capture All Slots" Margin="0,6,0,2" Click="BatchCapture_Click"/>
+                            <Label x:Name="BatchCaptureStatus" Content="" Foreground="{StaticResource TitleColor}"
+                                   FontSize="11" FontFamily="{StaticResource Kantumruy}" Margin="0,0,0,6"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem>
+
                 <TabItem Header="QuickSwap">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <StackPanel x:Name="QuickSwapPanel" Margin="4"/>
